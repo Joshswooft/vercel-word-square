@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "excludeFiles": ["src/*", "validation/*"],
+    "redirects": [{ "source": "/api/*", "destination": "/api/public/*" }]
+  }
+}
