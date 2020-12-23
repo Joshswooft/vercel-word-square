@@ -1,3 +1,13 @@
 {
-    "python.pythonPath": "/Users/joshuadando/Documents/python/vercel-word-square/venv/bin/python3"
+  "python.pythonPath": "/Users/joshuadando/Documents/python/vercel-word-square/venv/bin/python3",
+  "python.testing.unittestEnabled": true,
+  "python.testing.unittestArgs": [
+    "-v",
+    "-s",
+    "./api",
+    "-p",
+    "test*.py"
+  ],
+  "python.testing.pytestEnabled": false,
+  "python.testing.nosetestsEnabled": false
 }

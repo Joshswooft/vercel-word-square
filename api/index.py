@@ -2,8 +2,8 @@ from sanic import Sanic
 from sanic.response import json
 from sanic_validation import validate_json
 
-from api.validation.schema import word_schema
-from api.src.word_square import generate_word_square
+from .validation.schema import word_schema
+from .src import generate_word_square
 
 app = Sanic()
 

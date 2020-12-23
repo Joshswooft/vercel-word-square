@@ -1,7 +1,7 @@
 
 from marisa_trie import Trie
 from collections import Counter
-from api.src.anagram import get_anagrams, contains
+from .anagram import get_anagrams, contains
 
 '''
 Solution is valid if the following conditions are met:
