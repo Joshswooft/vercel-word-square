@@ -1,5 +1,5 @@
 import unittest
-
+from collections import Counter
 from word_square import check_solution_is_valid, generate_word_square
 
 
@@ -29,8 +29,14 @@ class WordSquareTestCase(unittest.TestCase):
 
     def test_generates_square(self):
         n = 4
-        res = generate_word_square(n, "eeeeddoonnnsssrv")
+        m = "eeeeddoonnnsssrv"
+        res = generate_word_square(n, m)
+        c = Counter("".join(r for r in res))
+        c2 = Counter(m)
+        self.assertEqual(c, c2)
         self.assertTrue(check_solution_is_valid(res, n))
+        expected = ['rose', 'oven', 'send', 'ends']
+        self.assertEqual(res, expected)
         
 if __name__ == '__main__':
     unittest.main()

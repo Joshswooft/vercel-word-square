@@ -25,7 +25,3 @@ def get_anagrams(n: int, letters: str)->list:
 
     return anagrams
 
-if __name__ == "__main__":
-    a = get_anagrams(4, "eeeeddoonnnsssrv")
-    print(a)
-    
