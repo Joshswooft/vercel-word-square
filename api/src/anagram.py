@@ -25,3 +25,5 @@ def get_anagrams(n: int, letters: str)->list:
 
     return anagrams
 
+if __name__ == '__main__':
+    print(get_anagrams(3, "car"))

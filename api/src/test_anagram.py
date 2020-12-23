@@ -1,6 +1,6 @@
 import unittest
 
-from anagram import get_anagrams, check_anagram
+from .anagram import get_anagrams, check_anagram
 from collections import Counter
 
 class AnagramTestCase(unittest.TestCase):

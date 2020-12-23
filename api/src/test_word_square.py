@@ -1,6 +1,6 @@
 import unittest
 from collections import Counter
-from word_square import check_solution_is_valid, generate_word_square
+from .word_square import check_solution_is_valid, generate_word_square
 
 
 class WordSquareTestCase(unittest.TestCase):
@@ -28,15 +28,42 @@ class WordSquareTestCase(unittest.TestCase):
         self.assertFalse(res)
 
     def test_generates_square(self):
-        n = 4
-        m = "eeeeddoonnnsssrv"
-        res = generate_word_square(n, m)
-        c = Counter("".join(r for r in res))
-        c2 = Counter(m)
-        self.assertEqual(c, c2)
-        self.assertTrue(check_solution_is_valid(res, n))
-        expected = ['rose', 'oven', 'send', 'ends']
-        self.assertEqual(res, expected)
+        testCases = [
+            {
+                "size": 4,
+                "word": 'eeeeddoonnnsssrv',
+                "want": ['rose', 'oven', 'send', 'ends']
+            },
+            {
+                "size": 4,
+                "word": "aaccdeeeemmnnnoo",
+                "want": ["moan", "once", "acme", "need"]
+            },
+            {   
+                "size": 5,
+                "word": "aaaeeeefhhmoonssrrrrttttw",
+                "want": ["feast", "earth", "armer", "steno", "throw"]
+            },
+            {
+                "size": 5,
+                "word": "aabbeeeeeeeehmosrrrruttvv",
+                "want": ['heart', 'ember', 'above', 'revue', 'trees']
+            },
+            {
+                "size": 7,
+                "word": "aaaaaaaaabbeeeeeeedddddggmmlloooonnssssrrrruvvyyy",
+                "want": ["bravado", "renamed", "analogy", "valuers", "amoebas", "degrade", "odyssey"]
+            },
+        ]
+
+        for test in testCases:
+            res = generate_word_square(test['size'], test['word'])
+            c = Counter("".join(r for r in res))
+            c2 = Counter(test['word'])
+            self.assertEqual(c, c2)
+            self.assertTrue(check_solution_is_valid(res, test['size']))
+            self.assertEqual(res, test['want'])
+
         
 if __name__ == '__main__':
     unittest.main()
