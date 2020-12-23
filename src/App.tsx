@@ -20,6 +20,10 @@ function App() {
     if (values.word == "") {
       errors.word = "Word is required.";
     }
+    if (values.word.length !== values.size * values.size) {
+      errors.word =
+        "Word must be n^2 the size. E.g. size = 3, words length must be 9";
+    }
     return errors;
   };
   const onSubmit = async (values: FormValues) => {
