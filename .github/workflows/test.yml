@@ -13,13 +13,8 @@ jobs:
         with:
           python-version: 3.7
 
-      - name: Install dependencies with pipenv
+      - name: Install dependencies
         run: |
-          pip install pipenv
-          pipenv install --deploy --dev
+          pip install -r requirements.txt
 
-      - run: pipenv run isort --recursive --diff
-      - run: pipenv run black --check .
-      - run: pipenv run flake8
-      - run: pipenv run mypy
-      - run: pipenv run unittest discover -v -s ./api -p test*.py
+      - run: python -m unittest discover -v -s ./api -p test*.py
