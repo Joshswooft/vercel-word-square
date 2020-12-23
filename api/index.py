@@ -8,7 +8,7 @@ from api.src.word_square import generate_word_square
 app = Sanic()
 
 @app.route('/')
-@app.route('/<path:path>')
+@app.route('/<path:path>', methods=["POST"])
 @validate_json(word_schema, clean=True)
 async def index(request, valid_json, path=""):
     size = valid_json["size"]
