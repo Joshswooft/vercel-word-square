@@ -1,7 +1,7 @@
 
 from marisa_trie import Trie
-
-from api.src.anagram import get_anagrams
+from collections import Counter
+from api.src.anagram import get_anagrams, contains
 
 '''
 Solution is valid if the following conditions are met:
@@ -34,9 +34,10 @@ def check_solution_is_valid(words:list, square_size: int)->bool:
 
 # On each pass we attempt to add another word to the words list. 
 # If the word list is valid we return it as the result
-def recurse_generate(words:list, trie: Trie, square_size:int, chosen_words_length=0)->list:
+def recurse_generate(chosen_word:str, words:list, trie: Trie, square_size:int, chosen_words_length=0)->list:
+    # TODO: we need to check that the counts of the characters in the word does not exceed the count of characters 
     if chosen_words_length >= square_size or square_size <= 1:
-        if check_solution_is_valid(words, square_size):
+        if contains(Counter(chosen_word), Counter("".join(word for word in words))) and check_solution_is_valid(words, square_size):
             return words
         return None
     
@@ -55,7 +56,7 @@ def recurse_generate(words:list, trie: Trie, square_size:int, chosen_words_lengt
     # we use a prefix to dictate which key to start going over
     for word in trie.iterkeys(prefix):
         new_list = words + [word]
-        res = recurse_generate(new_list, trie, square_size, chosen_words_length+1)
+        res = recurse_generate(chosen_word, new_list, trie, square_size, chosen_words_length+1)
         if res:
             return res
 
@@ -67,14 +68,7 @@ def generate_word_square(n: int, letters:str)->list:
     words = get_anagrams(n, letters)
 # Trie - https://en.wikipedia.org/wiki/Trie
     t = Trie(words)
-    result = recurse_generate([], t, n, 0)
+    result = recurse_generate(letters, [], t, n, 0)
     print(result)
     return result
 
-
-if __name__ == "__main__":
-    generate_word_square(4, "eeeeddoonnnsssrv")
-    generate_word_square(4, "aaccdeeeemmnnnoo")
-    generate_word_square(5, "aaaeeeefhhmoonssrrrrttttw")
-    generate_word_square(5, "aabbeeeeeeeehmosrrrruttvv")
-    generate_word_square(7, "aaaaaaaaabbeeeeeeedddddggmmlloooonnssssrrrruvvyyy")
