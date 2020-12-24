@@ -19,6 +19,7 @@ const StyledForm = styled(Form)`
 
 function App() {
   const [wordSquares, setWordSquares] = useState<string[]>([]);
+  const [submitStatus, setSubmitStatus] = useState(false);
 
   const validate = (values: FormValues) => {
     const errors = {} as any;
@@ -44,6 +45,7 @@ function App() {
     }).then((res) => {
       return res.json();
     });
+    setSubmitStatus(true);
     setWordSquares(getWordSquares.data);
   };
 
@@ -107,7 +109,7 @@ function App() {
             </StyledForm>
           )}
         </Formik>
-        <Results words={wordSquares} />
+        {submitStatus && <Results words={wordSquares} />}
       </div>
     </ThemeWrapper>
   );
