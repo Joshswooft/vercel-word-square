@@ -3,9 +3,10 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { Button } from "./components/common";
 import { ThemeWrapper } from "./components/common/theme";
+import { ExampleBlock, examples } from "./components/ExampleBlock";
 import { Results } from "./components/Results";
 
-interface FormValues {
+export interface FormValues {
   size: number;
   word: string;
 }
@@ -38,7 +39,6 @@ function App() {
       return res.json();
     });
     setWordSquares(getWordSquares.data);
-    console.log(getWordSquares);
   };
 
   return (
@@ -60,47 +60,9 @@ function App() {
           of letters, can you produce a valid word square.
         </p>
         <h3 className="bold">Examples</h3>
-        <p>
-          size: 4, word: eeeeddoonnnsssrv
-          <Button
-            onClick={() => onSubmit({ size: 4, word: "eeeeddoonnnsssrv" })}
-          >
-            Try me
-          </Button>
-        </p>
-        <p>
-          size: 5, word: aaaeeeefhhmoonssrrrrttttw
-          <Button
-            onClick={() =>
-              onSubmit({ size: 5, word: "aaaeeeefhhmoonssrrrrttttw" })
-            }
-          >
-            Try me
-          </Button>
-        </p>
-        <p>
-          size: 5, word: aabbeeeeeeeehmosrrrruttvv
-          <Button
-            onClick={() =>
-              onSubmit({ size: 5, word: "aabbeeeeeeeehmosrrrruttvv" })
-            }
-          >
-            Try me
-          </Button>
-        </p>
-        <p>
-          size: 7, word: aaaaaaaaabbeeeeeeedddddggmmlloooonnssssrrrruvvyyy
-          <Button
-            onClick={() =>
-              onSubmit({
-                size: 7,
-                word: "aaaaaaaaabbeeeeeeedddddggmmlloooonnssssrrrruvvyyy",
-              })
-            }
-          >
-            Try me
-          </Button>
-        </p>
+        {examples.map((e) => (
+          <ExampleBlock onSubmit={onSubmit} values={e} />
+        ))}
         <Formik<FormValues>
           initialValues={{ size: 0, word: "" }}
           validate={validate}

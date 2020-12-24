@@ -93,8 +93,7 @@ export const reset = css`
     padding: 0;
     border: 0;
     font-size: 100%;
-    font-family: ${(p) => p.theme.font};
-    font: inherit;
+    font-family: ${(p) => p.theme.font}, sans-serif;
     vertical-align: baseline;
   }
   /* HTML5 display-role reset for older browsers */
@@ -142,6 +141,7 @@ export const reset = css`
   h3,
   p {
     margin: 1em;
+    line-height: 1.5em;
   }
   h1 {
     font-size: 2rem;

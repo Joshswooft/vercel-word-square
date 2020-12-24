@@ -29,5 +29,5 @@ export const theme: DefaultTheme = {
     primary: "black",
     secondary: "white",
   },
-  font: "Sofia Pro",
+  font: "Sofia Pro Regular",
 };
