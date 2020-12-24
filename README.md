@@ -6,7 +6,7 @@ vercel can use serverless functions if you do it in the root `api` folder.
 
 1. `pip install -r requirements.txt`
 2. `yarn`
-3. `yarn dev`
+3. `vercel dev`
 
 ## Developing
 
