@@ -65,10 +65,11 @@ def recurse_generate(chosen_word:str, words:list, trie: Trie, square_size:int, c
 
 def generate_word_square(n: int, letters:str)->list:
     assert n > 0, "Invalid square"
-    words = get_anagrams(n, letters)
+    lower_l = letters.lower()
+    words = get_anagrams(n, letters.lower())
 # Trie - https://en.wikipedia.org/wiki/Trie
     t = Trie(words)
-    result = recurse_generate(letters, [], t, n, 0)
+    result = recurse_generate(lower_l, [], t, n, 0)
     print(result)
     return result
 

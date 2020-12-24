@@ -31,7 +31,7 @@ class WordSquareTestCase(unittest.TestCase):
         testCases = [
             {
                 "size": 4,
-                "word": 'eeeeddoonnnsssrv',
+                "word": 'eeeeDdooNnnsssrV',
                 "want": ['rose', 'oven', 'send', 'ends']
             },
             {
@@ -51,7 +51,7 @@ class WordSquareTestCase(unittest.TestCase):
             },
             {
                 "size": 7,
-                "word": "aaaaaaaaabbeeeeeeedddddggmmlloooonnssssrrrruvvyyy",
+                "word": "AaaaaaaaabbeeeeeeedddddggmmlloooonnssssrrrruvvyyY",
                 "want": ["bravado", "renamed", "analogy", "valuers", "amoebas", "degrade", "odyssey"]
             },
         ]
@@ -59,7 +59,7 @@ class WordSquareTestCase(unittest.TestCase):
         for test in testCases:
             res = generate_word_square(test['size'], test['word'])
             c = Counter("".join(r for r in res))
-            c2 = Counter(test['word'])
+            c2 = Counter(test['word'].lower())
             self.assertEqual(c, c2)
             self.assertTrue(check_solution_is_valid(res, test['size']))
             self.assertEqual(res, test['want'])

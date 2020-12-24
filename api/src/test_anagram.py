@@ -4,6 +4,12 @@ from .anagram import get_anagrams, check_anagram
 from collections import Counter
 
 class AnagramTestCase(unittest.TestCase):
+
+    def test_wrong_letter_case(self):
+        a = "anTLER"
+        b = "Rental"
+        res = check_anagram(a, b)
+        self.assertTrue(res)
     
     def test_invalid_number_input(self):
         with self.assertRaises(AssertionError):

@@ -46,7 +46,7 @@ function App() {
       return res.json();
     });
     setSubmitStatus(true);
-    setWordSquares(getWordSquares.data);
+    setWordSquares(getWordSquares.data ? getWordSquares.data : []);
   };
 
   return (
