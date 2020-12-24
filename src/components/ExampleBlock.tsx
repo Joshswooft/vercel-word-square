@@ -10,31 +10,31 @@ export const examples: FormValues[] = [
   },
   {
     size: 4,
-    word: "eeeeddoonnnsssrv",
+    word: "aaccdeeeemmnnnoo",
   },
   {
-    size: 4,
-    word: "eeeeddoonnnsssrv",
+    size: 5,
+    word: "aaaeeeefhhmoonssrrrrttttw",
   },
   {
-    size: 4,
-    word: "eeeeddoonnnsssrv",
+    size: 5,
+    word: "aabbeeeeeeeehmosrrrruttvv",
   },
   {
-    size: 4,
-    word: "eeeeddoonnnsssrv",
-  },
-  {
-    size: 4,
-    word: "eeeeddoonnnsssrv",
+    size: 7,
+    word: "aaaaaaaaabbeeeeeeedddddggmmlloooonnssssrrrruvvyyy",
   },
 ];
 
 const ExampleBlockDiv = styled.div`
+  display: inline-flex;
+  width: 100%;
   p {
-    /* display: inline-block; */
+    width: 100%;
+    word-break: break-all;
   }
   button {
+    justify-content: center;
     margin: 1em auto;
   }
 `;
@@ -47,11 +47,11 @@ export function ExampleBlock({
   values: FormValues;
 }) {
   return (
-    <div>
+    <ExampleBlockDiv>
       <p>
         square size: {values.size}, word: {values.word}
       </p>
       <Button onClick={() => onSubmit(values)}>Try me</Button>
-    </div>
+    </ExampleBlockDiv>
   );
 }

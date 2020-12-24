@@ -1,7 +1,8 @@
 import fetch from "cross-fetch";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
-import { Button } from "./components/common";
+import styled from "styled-components";
+import { Button, InputContainer } from "./components/common";
 import { ThemeWrapper } from "./components/common/theme";
 import { ExampleBlock, examples } from "./components/ExampleBlock";
 import { Results } from "./components/Results";
@@ -10,6 +11,11 @@ export interface FormValues {
   size: number;
   word: string;
 }
+
+const StyledForm = styled(Form)`
+  margin: 0 20px;
+  margin-top: 40px;
+`;
 
 function App() {
   const [wordSquares, setWordSquares] = useState<string[]>([]);
@@ -60,8 +66,8 @@ function App() {
           of letters, can you produce a valid word square.
         </p>
         <h3 className="bold">Examples</h3>
-        {examples.map((e) => (
-          <ExampleBlock onSubmit={onSubmit} values={e} />
+        {examples.map((e, k) => (
+          <ExampleBlock key={k} onSubmit={onSubmit} values={e} />
         ))}
         <Formik<FormValues>
           initialValues={{ size: 0, word: "" }}
@@ -72,17 +78,33 @@ function App() {
           }}
         >
           {({ isSubmitting }) => (
-            <Form>
-              <Field type="number" name="size" />
-              <ErrorMessage name="size" component="div" />
-
-              <Field type="text" name="word" maxLength={100} />
-              <ErrorMessage name="word" component="div" />
+            <StyledForm>
+              <InputContainer>
+                <label htmlFor="size">Size of magic square</label>
+                <Field
+                  id="size"
+                  type="number"
+                  name="size"
+                  placeholder="How big is the square?"
+                />
+                <ErrorMessage name="size" component="div" />
+              </InputContainer>
+              <InputContainer>
+                <label htmlFor="word">Letter combination</label>
+                <Field
+                  id="word"
+                  type="text"
+                  name="word"
+                  maxLength={100}
+                  placeholder="Enter the letters"
+                />
+                <ErrorMessage name="word" component="div" />
+              </InputContainer>
 
               <Button type="submit" disabled={isSubmitting}>
                 Submit
               </Button>
-            </Form>
+            </StyledForm>
           )}
         </Formik>
         <Results words={wordSquares} />

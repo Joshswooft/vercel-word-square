@@ -95,6 +95,7 @@ export const reset = css`
     font-size: 100%;
     font-family: ${(p) => p.theme.font}, sans-serif;
     vertical-align: baseline;
+    box-sizing: border-box;
   }
   /* HTML5 display-role reset for older browsers */
   article,
@@ -163,5 +164,25 @@ export const reset = css`
 
   .bold {
     font-weight: bold;
+  }
+
+  .block {
+    display: block;
+  }
+
+  .inline-block {
+    display: inline-block;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  label {
+    line-height: 1.55rem;
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
   }
 `;
