@@ -18,7 +18,9 @@ ROSE is in 1st column and 1st row
 OVEN is in 2nd column and 2nd row...
 
 '''
-def check_solution_is_valid(words:list, square_size: int)->bool:
+def check_solution_is_valid(words:list, chosen_word: str, square_size: int)->bool:
+    if contains(Counter(chosen_word.lower()), Counter("".join(word for word in words))) == False:
+        return False
     if len(words) != square_size:
         return False
     for i in range(square_size):
@@ -37,7 +39,7 @@ def check_solution_is_valid(words:list, square_size: int)->bool:
 def recurse_generate(chosen_word:str, words:list, trie: Trie, square_size:int, chosen_words_length=0)->list:
     # TODO: we need to check that the counts of the characters in the word does not exceed the count of characters 
     if chosen_words_length >= square_size or square_size <= 1:
-        if contains(Counter(chosen_word), Counter("".join(word for word in words))) and check_solution_is_valid(words, square_size):
+        if check_solution_is_valid(words, chosen_word, square_size):
             return words
         return None
     

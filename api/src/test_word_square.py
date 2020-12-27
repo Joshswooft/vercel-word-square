@@ -9,22 +9,18 @@ class WordSquareTestCase(unittest.TestCase):
         with self.assertRaises(AssertionError):
             generate_word_square(-1, "foo")
 
-    def test_check_solution_is_valid(self):
-        words = ["rose", "oven", "send", "ends"]
-        n = 4
-        res = check_solution_is_valid(words=words, square_size=n)
-        self.assertTrue(res)
-
     def test_check_solution_invalid_length(self):
         words = ["rose", "oven", "send", "ends"]
+        word = "eeeeDdooNnnsssrV"
         n = 8
-        res = check_solution_is_valid(words, n)
+        res = check_solution_is_valid(words,word, n)
         self.assertFalse(res)
 
     def test_check_solution_invalid_words(self):
         words = ['foo', 'bar', 'baz']
+        word = "fobarobaz"
         n = 3
-        res = check_solution_is_valid(words, n)
+        res = check_solution_is_valid(words, word, n)
         self.assertFalse(res)
 
     def test_generates_square(self):
@@ -61,7 +57,7 @@ class WordSquareTestCase(unittest.TestCase):
             c = Counter("".join(r for r in res))
             c2 = Counter(test['word'].lower())
             self.assertEqual(c, c2)
-            self.assertTrue(check_solution_is_valid(res, test['size']))
+            self.assertTrue(check_solution_is_valid(res, test['word'], test['size']))
             self.assertEqual(res, test['want'])
 
         
